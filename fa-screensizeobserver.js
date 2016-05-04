@@ -2,8 +2,6 @@
 	
 	if (typeof exports == 'object') {
 		module.exports = factory(require('jquery'));
-	} else {
-		factory(jQuery);
 	}
 	
 })(function($) {
