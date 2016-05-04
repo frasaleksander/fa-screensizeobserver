@@ -1,2 +1,2 @@
-# fon-screensizeobserver
+# fa-screensizeobserver
 Observes screen size
