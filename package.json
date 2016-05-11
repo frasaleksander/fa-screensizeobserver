@@ -1,0 +1,34 @@
+{
+  "name": "fa-screensizeobserver",
+  "version": "0.0.1",
+  "description": "Observes window size",
+  "main": "fa-screensizeobserver.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "(watchify test/browserify/app.js -o test/browserify/bundle.js) & livereload"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frasaleksander/fa-screensizeobserver.git"
+  },
+  "keywords": [
+    "jquery",
+    "screen",
+    "size",
+    "observer",
+    "browserify"
+  ],
+  "author": "Fras Aleksander",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/frasaleksander/fa-screensizeobserver/issues"
+  },
+  "homepage": "https://github.com/frasaleksander/fa-screensizeobserver#readme",
+  "devDependencies": {},
+  "dependencies": {
+    "jquery": "^2.2.3"
+  }
+}

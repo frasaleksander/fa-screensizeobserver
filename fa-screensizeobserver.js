@@ -1,131 +1,179 @@
 (function(factory) {
-	
-	if (typeof exports == 'object') {
-		module.exports = factory(require('jquery'));
-	}
-	
+    'use strict';
+    if (typeof exports == 'object') {
+        module.exports = factory(require("jquery"));
+    }
+    
 })(function($) {
+    'use strict';
 
-	function setLastSizeItemMaxWidth() {
-		var length = ScreenSizeObserver.sizes.length;
-		setSizeItemMaxWidth(length-1, maximumDeviceWidth);
-	}
+    var $document = $(document);
+    var $window   = $(window);
+    var $html     = $(document.documentElement);
 
-	function setSizeItemMaxWidth(index, maxWidth) {
-		ScreenSizeObserver.sizes[index].maxWidth = maxWidth;
-	}
+    var ScreenSizeObserver = window.ScreenSizeObserver || {};
 
-	function setSizeItemClassName(index, className) {
-		ScreenSizeObserver.sizes[index].className = className;
-	}
+    var ScreenSizeObserver = (function() {
 
-	function onScreenSizeChanged(callback) {
-		var data = getScreenSizeData();
-		var i;
-		callback(data);
-		for(i in onScreenSizeChangedMethods) {
-			onScreenSizeChangedMethods[i](data);
-		}
-	}
+        var instanceID = 0;
 
-	function onScreenSizeInit(callback) {
+        function ScreenSizeObserver(settings) {
+            var _        = this;
 
-	}
+            var defaults = {
+                $element           : $(document.documentElement),
+                maximumWidth       : 999999,
+                sizes              : [
+                    { maxWidth  : 767,  className : 'size-xs', },
+                    { maxWidth  : 991,  className : 'size-sm', },
+                    { maxWidth  : 1199, className : 'size-md', },
+                    {                   className : 'size-lg', },
+                ],
+            };
 
-	function getScreenSizeData() {
-		return {
-			sizeIndex    : newDetectedSizeIndex,
-			oldSizeIndex : oldDetectedSizeIndex,
-			className    : ScreenSizeObserver.sizes[newDetectedSizeIndex].className,
-			oldClassName : ScreenSizeObserver.sizes[oldDetectedSizeIndex].className,
-			size         : ScreenSizeObserver.sizes[newDetectedSizeIndex],
-			oldSize      : ScreenSizeObserver.sizes[oldDetectedSizeIndex],
-		};
-	}
+            _.currentSizeIndex     = 0;
+            _.oldSizeIndex         = 0;
 
-	function onDocumentReady() {
-		$document.on('ready', function() {
-			oldDetectedSizeIndex = getSizeIndex($window.width());
-			newDetectedSizeIndex = oldDetectedSizeIndex;
-			onScreenSizeChanged(function(sender){
-				$html.addClass(sender.className);
-			});
-		});
-	}
+            _.onInitArray          = [function(e){
+                _.$element.addClass(e.className);
+            }];
 
-	function onWindowResize() {
-		$window.on('resize', function() {
-			newDetectedSizeIndex = getSizeIndex($window.width());
-			if(oldDetectedSizeIndex != newDetectedSizeIndex) {
-				onScreenSizeChanged(function(sender) {
-					$html.removeClass(sender.oldClassName);
-					$html.addClass(sender.className);
-				});
-				oldDetectedSizeIndex = newDetectedSizeIndex;
-			}
-		});
-	}
-
-	function getSizeIndex(width) {
-
-		var i           = 1;
-		var sizes       = ScreenSizeObserver.sizes;
-		var length      = ScreenSizeObserver.sizes.length;
-		setLastSizeItemMaxWidth();
-
-		if( width <= sizes[0].maxWidth ) {
-			return 0;
-		}
-
-		for( i = 1; i < length; ++i ) {
-			if( width > sizes[i-1].maxWidth && width <= sizes[i].maxWidth ) {
-				return i;
-			}
-		}
-
-	}
-
-	var $window                     = $(window);
-	var $document                   = $(document);
-	var $html                       = $(document.documentElement);
-	var maximumDeviceWidth          = 999999;
-
-	var oldDetectedSizeIndex        = 0;
-	var newDetectedSizeIndex        = 0;
-
-	var onScreenSizeChangedMethods  = [];
-	var onScreenSizeInitMethods     = [];
-
-	var ScreenSizeObserver          = window.ScreenSizeObserver || {};
+            _.onSizeChangedArray   = [function(e){
+                _.$element.removeClass(e.oldClassName);
+                _.$element.addClass(e.className);
+            }];
 
 
-	ScreenSizeObserver.sizes        = [ 
-		{
-			maxWidth  : 767,
-			className : 'device-xs',
-		}, {
-			maxWidth  : 991,
-			className : 'device-sm',
-		}, {
-			maxWidth  : 1199,
-			className : 'device-md',
-		}, {
-			className : 'device-lg',
-		},
-	];
+        
+            if(("object" == typeof settings) && ("function" == typeof settings.onInit)) {
+                _.onInitArray.push(settings.onInit);
+                delete settings.onInit;
+            }
+        
+            if(("object" == typeof settings) && ("function" == typeof settings.onSizeChanged)) {
+                _.onSizeChangedArray.push(settings.onSizeChanged);
+                delete settings.onSizeChanged;
+            }
+
+            $.extend(_, defaults, settings);
+
+            init.call(_);
+
+            _.instanceID = instanceID++; 
+        };
+
+        return ScreenSizeObserver;
+
+    })();
+
+    function addCallbackToArray(arr, callback) {
+        arr.push(callback);
+    }
+
+    function execAllCallbacksFromArray(arr, data) {
+        var i;
+        for(i in arr) {
+            arr[i](data);
+        }
+    }
+
+    function getCallbackData() {
+        var _ = this;
+
+        return {
+            $element     : _.$element,
+            sizeIndex    : _.currentSizeIndex,
+            oldSizeIndex : _.oldSizeIndex,
+            className    : _.sizes[_.currentSizeIndex].className,
+            oldClassName : _.sizes[_.oldSizeIndex].className,
+            size         : _.sizes[_.currentSizeIndex],
+            oldSize      : _.sizes[_.oldSizeIndex],
+        };
+    };
+
+    function getSizeIndexByWidth(width) {
+        var _ = this,
+            i = 1;    
+
+        if( width <= _.sizes[0].maxWidth ) {
+            return 0;
+        }
+
+        for( i = 1; i < _.sizes.length; ++i ) {
+            if( width > _.sizes[i-1].maxWidth && width <= _.sizes[i].maxWidth ) {
+                return i;
+            }
+        }
+    };
+
+    function init() {
+        var _ = this;
+        setSizeMaxWidth.call(_, _.sizes.length-1, _.maximumWidth);
+        onDocumentReady.call(_);
+        onWindowResize.call(_);
+    };    
+
+    function onDocumentReady() {
+        var _ = this;
+        $document.on('ready', function() {
+            _.oldSizeIndex = getSizeIndexByWidth.call(_, $window.width());
+            _.currentSizeIndex = _.oldSizeIndex;
+            onInit.call(_);
+        });
+    };
+
+    function onSizeChanged() {
+        var _ = this;
+        var data = getCallbackData.call(_);
+        execAllCallbacksFromArray(_.onSizeChangedArray, data);
+    }
+
+    function onSizeEnter() {
+        var _ = this;
+    }
+
+    function onSizeLeave() {
+        var _ = this;
+    }
+
+    function onInit(){
+        var _ = this;
+        var data = getCallbackData.call(_);
+        execAllCallbacksFromArray(_.onInitArray, data);
+    }
+
+    function onWindowResize() {
+        var _ = this;
+        $window.on('resize', function(){
+            _.currentSizeIndex = getSizeIndexByWidth.call(_, $window.width());
+            if(_.oldSizeIndex != _.currentSizeIndex) {
+                onSizeChanged.call(_);
+                _.oldSizeIndex = _.currentSizeIndex;
+            }
+        });
+    };
+
+    function setSizeMaxWidth(index, maxWidth) {
+        var _ = this;
+        _.sizes[index].maxWidth = maxWidth;
+    };
+
+    function setSizeClassName(index, className) {
+        var _ = this;
+        _.sizes[index].className = className;
+    };
 
 
+    ScreenSizeObserver.prototype.onSizeChanged = function(callback) {
+        var _    = this;
+        _.onSizeChangedArray.push(callback);
+    };
 
-	ScreenSizeObserver.init = function(settings){
-		ScreenSizeObserver = $.extend({}, ScreenSizeObserver, settings);
-		onWindowResize();
-		onDocumentReady();
-	};
+    ScreenSizeObserver.prototype.onInit = function(callback) {
+        var _ = this;
+        _.onInitArray.push(callback);
+    };
 
-	ScreenSizeObserver.onScreenSizeChanged = function(method){
-		onScreenSizeChangedMethods.push(method);
-	};
-
-	return ScreenSizeObserver;
+    return ScreenSizeObserver;
 
 });
