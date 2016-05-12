@@ -1,6 +1,6 @@
 {
   "name": "fa-screensizeobserver",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Observes window size",
   "main": "fa-screensizeobserver.js",
   "directories": {
