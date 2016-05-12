@@ -115,17 +115,19 @@
     };    
 
     function onDocumentReady() {
-        var _ = this;
+        var _ = this,
+            data;
+
         $document.on('ready', function() {
             _.oldSizeIndex = getSizeIndexByWidth.call(_, $window.width());
             _.currentSizeIndex = _.oldSizeIndex;
-            onInit.call(_);
+            data = getCallbackData.call(_);
+            onInit.call(_, data);
         });
     };
 
-    function onSizeChanged() {
+    function onSizeChanged(data) {
         var _ = this;
-        var data = getCallbackData.call(_);
         execAllCallbacksFromArray(_.onSizeChangedArray, data);
     }
 
@@ -137,18 +139,19 @@
         var _ = this;
     }
 
-    function onInit(){
+    function onInit(data){
         var _ = this;
-        var data = getCallbackData.call(_);
         execAllCallbacksFromArray(_.onInitArray, data);
     }
 
     function onWindowResize() {
-        var _ = this;
+        var _ = this,
+            data;
         $window.on('resize', function(){
             _.currentSizeIndex = getSizeIndexByWidth.call(_, $window.width());
             if(_.oldSizeIndex != _.currentSizeIndex) {
-                onSizeChanged.call(_);
+                data = getCallbackData.call(_);
+                onSizeChanged.call(_, data);
                 _.oldSizeIndex = _.currentSizeIndex;
             }
         });
@@ -10034,7 +10037,7 @@ var ScreenSizeObserver = require('../../fa-screensizeobserver.js');
 var SSO = new ScreenSizeObserver({
 	$element: $(document.body),
 	onSizeChanged : function(e) {
-		$test1.find('p').html('<div>document.documentElement.className:'+e.className+'</div>');
+		$test1.find('p').html('<div>className:'+e.className+'<br>oldClassName:' + e.oldClassName + '</div>');
 	},
 	onInit : function(){
 		$test1.find('p').html('<div>document is ready</div>');
@@ -10043,10 +10046,10 @@ var SSO = new ScreenSizeObserver({
 		{ 
 			className:'size-sm', 
 			maxWidth:1000, 
-			onSizeEnter: function() {
+			onSizeEnter: function(e) {
 
 			}, 
-			onSizeLeave: function(){
+			onSizeLeave: function(e){
 
 			}, 
 		}, { 
