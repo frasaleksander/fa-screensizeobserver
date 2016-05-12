@@ -23,7 +23,7 @@
 
             var defaults = {
                 $element           : $(document.documentElement),
-                maximumWidth       : 999999,
+                maximumWidth       : +Infinity,
                 sizes              : [
                     { maxWidth  : 767,  className : 'size-xs', },
                     { maxWidth  : 991,  className : 'size-sm', },
@@ -129,6 +129,7 @@
     function onSizeChanged(data) {
         var _ = this;
         execAllCallbacksFromArray(_.onSizeChangedArray, data);
+        
     }
 
     function onSizeEnter() {
