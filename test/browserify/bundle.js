@@ -177,6 +177,7 @@
                 }
             }
         }
+        return null;
     };
 
     ScreenSizeObserver.prototype.getSizeIndexByWidth = function(width) {
