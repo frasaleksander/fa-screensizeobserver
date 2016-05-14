@@ -9,24 +9,27 @@ var ScreenSizeObserver = require('../../fa-screensizeobserver.js');
 var SSO = new ScreenSizeObserver({
 	$element: $(document.body),
 	onSizeChanged : function(e) {
-		$test1.find('p').html('<div>className:'+e.className+'<br>oldClassName:' + e.oldClassName + '</div>');
+		$test1.find('#title').html('Current class: ' + e.className);
 	},
 	onInit : function(){
-		$test1.find('p').html('<div>document is ready</div>');
+		$test1.find('#title').html('document is ready');
 	}, 
 	sizes: [
 		{ 
 			className:'size-sm', 
 			maxWidth:1000, 
 			onSizeEnter: function(e) {
-				console.log(e);
+				$test1.find('#status').html("Entering: " + e.className);
 			}, 
+			onSizeLeave: function(e) {
+				$test1.find('#status').html("Leaving: " + e.oldClassName);
+			}
 		}, { 
-			className:'size-lg', 
-		    maxWidth:9999, 
-		    onSizeLeave: function(){
-		    	console.log("leave");
-		    }
+			className:'size-lg'
 		},
 	]
+});
+
+SSO.onSizeChanged(function(){
+	console.log(typeof document.onReady);
 });
