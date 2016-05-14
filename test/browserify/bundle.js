@@ -91,6 +91,21 @@
         };
     }
 
+    function getSizeIndexByWidth(width) {
+        var _ = this,
+            i = 1;    
+
+        if( width <= _.sizes[0].maxWidth ) {
+            return 0;
+        }
+
+        for( i = 1; i < _.sizes.length; ++i ) {
+            if( width > _.sizes[i-1].maxWidth && width <= _.sizes[i].maxWidth ) {
+                return i;
+            }
+        }
+    }
+
     function init() {
         var _ = this;
         setSizeMaxWidth.call(_, _.sizes.length-1, _.maximumWidth);
@@ -103,7 +118,7 @@
             data;
 
         $document.on('ready', function() {
-            _.oldSizeIndex = _.getSizeIndexByWidth($window.width());
+            _.oldSizeIndex = getSizeIndexByWidth.call(_, $window.width());
             _.currentSizeIndex = _.oldSizeIndex;
             data = getCallbackData.call(_);
             onInit.call(_, data);
@@ -145,7 +160,7 @@
         var _ = this,
             data;
         $window.on('resize', function(){
-            _.currentSizeIndex = _.getSizeIndexByWidth($window.width());
+            _.currentSizeIndex = getSizeIndexByWidth.call(_, $window.width());
             if(_.oldSizeIndex != _.currentSizeIndex) {
                 data = getCallbackData.call(_);
                 onSizeChanged.call(_, data);
@@ -177,23 +192,7 @@
                 }
             }
         }
-        return null;
     };
-
-    ScreenSizeObserver.prototype.getSizeIndexByWidth = function(width) {
-        var _ = this,
-            i = 1;    
-
-        if( width <= _.sizes[0].maxWidth ) {
-            return 0;
-        }
-
-        for( i = 1; i < _.sizes.length; ++i ) {
-            if( width > _.sizes[i-1].maxWidth && width <= _.sizes[i].maxWidth ) {
-                return i;
-            }
-        }
-    }
 
     ScreenSizeObserver.prototype.onSizeChanged = function(callback) {
         var _    = this;
