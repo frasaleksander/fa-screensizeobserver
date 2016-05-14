@@ -19,14 +19,14 @@ var SSO = new ScreenSizeObserver({
 			className:'size-sm', 
 			maxWidth:1000, 
 			onSizeEnter: function(e) {
-
-			}, 
-			onSizeLeave: function(e){
-
+				console.log(e);
 			}, 
 		}, { 
 			className:'size-lg', 
 		    maxWidth:9999, 
+		    onSizeLeave: function(){
+		    	console.log("leave");
+		    }
 		},
 	]
 });

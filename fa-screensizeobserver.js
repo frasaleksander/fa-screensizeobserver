@@ -1,3 +1,5 @@
+//require('classlist-polyfill');
+
 (function(factory) {
     'use strict';
     if (typeof exports == 'object') {
@@ -9,7 +11,6 @@
 
     var $document = $(document);
     var $window   = $(window);
-    var $html     = $(document.documentElement);
 
     var ScreenSizeObserver = window.ScreenSizeObserver || {};
 
@@ -24,8 +25,8 @@
                 $element           : $(document.documentElement),
                 maximumWidth       : +Infinity,
                 sizes              : [
-                    { maxWidth  : 767,  className : 'size-xs', },
-                    { maxWidth  : 991,  className : 'size-sm', },
+                    { maxWidth  : 767 , className : 'size-xs', },
+                    { maxWidth  : 991 , className : 'size-sm', },
                     { maxWidth  : 1199, className : 'size-md', },
                     {                   className : 'size-lg', },
                 ],
@@ -43,8 +44,6 @@
                 _.$element.addClass(e.className);
             }];
 
-
-        
             if(("object" == typeof settings) && ("function" == typeof settings.onInit)) {
                 _.onInitArray.push(settings.onInit);
                 delete settings.onInit;
@@ -128,15 +127,27 @@
     function onSizeChanged(data) {
         var _ = this;
         execAllCallbacksFromArray(_.onSizeChangedArray, data);
+        onSizeEnter.call(_, data);
+        onSizeLeave.call(_, data);
         
     }
 
-    function onSizeEnter() {
-        var _ = this;
+    function onSizeEnter(data) {
+        var _ = this,
+            index = data.sizeIndex;
+
+        if("function" == typeof _.sizes[index].onSizeEnter) {
+            _.sizes[index].onSizeEnter(data);
+        }
     }
 
-    function onSizeLeave() {
-        var _ = this;
+    function onSizeLeave(data) {
+        var _ = this,
+            index = data.oldSizeIndex;
+
+        if("function" == typeof _.sizes[index].onSizeLeave) {
+            _.sizes[index].onSizeLeave(data);
+        }
     }
 
     function onInit(data){

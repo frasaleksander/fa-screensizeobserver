@@ -29,6 +29,7 @@
   "homepage": "https://github.com/frasaleksander/fa-screensizeobserver#readme",
   "devDependencies": {},
   "dependencies": {
+    "classlist-polyfill": "^1.0.3",
     "jquery": "^2.2.3"
   }
 }

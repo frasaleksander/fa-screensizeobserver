@@ -1,4 +1,6 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+//require('classlist-polyfill');
+
 (function(factory) {
     'use strict';
     if (typeof exports == 'object') {
@@ -10,7 +12,6 @@
 
     var $document = $(document);
     var $window   = $(window);
-    var $html     = $(document.documentElement);
 
     var ScreenSizeObserver = window.ScreenSizeObserver || {};
 
@@ -25,8 +26,8 @@
                 $element           : $(document.documentElement),
                 maximumWidth       : +Infinity,
                 sizes              : [
-                    { maxWidth  : 767,  className : 'size-xs', },
-                    { maxWidth  : 991,  className : 'size-sm', },
+                    { maxWidth  : 767 , className : 'size-xs', },
+                    { maxWidth  : 991 , className : 'size-sm', },
                     { maxWidth  : 1199, className : 'size-md', },
                     {                   className : 'size-lg', },
                 ],
@@ -44,8 +45,6 @@
                 _.$element.addClass(e.className);
             }];
 
-
-        
             if(("object" == typeof settings) && ("function" == typeof settings.onInit)) {
                 _.onInitArray.push(settings.onInit);
                 delete settings.onInit;
@@ -129,15 +128,27 @@
     function onSizeChanged(data) {
         var _ = this;
         execAllCallbacksFromArray(_.onSizeChangedArray, data);
+        onSizeEnter.call(_, data);
+        onSizeLeave.call(_, data);
         
     }
 
-    function onSizeEnter() {
-        var _ = this;
+    function onSizeEnter(data) {
+        var _ = this,
+            index = data.sizeIndex;
+
+        if("function" == typeof _.sizes[index].onSizeEnter) {
+            _.sizes[index].onSizeEnter(data);
+        }
     }
 
-    function onSizeLeave() {
-        var _ = this;
+    function onSizeLeave(data) {
+        var _ = this,
+            index = data.oldSizeIndex;
+
+        if("function" == typeof _.sizes[index].onSizeLeave) {
+            _.sizes[index].onSizeLeave(data);
+        }
     }
 
     function onInit(data){
@@ -10048,14 +10059,14 @@ var SSO = new ScreenSizeObserver({
 			className:'size-sm', 
 			maxWidth:1000, 
 			onSizeEnter: function(e) {
-
-			}, 
-			onSizeLeave: function(e){
-
+				console.log(e);
 			}, 
 		}, { 
 			className:'size-lg', 
 		    maxWidth:9999, 
+		    onSizeLeave: function(){
+		    	console.log("leave");
+		    }
 		},
 	]
 });
