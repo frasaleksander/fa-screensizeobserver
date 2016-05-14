@@ -30,6 +30,6 @@ var SSO = new ScreenSizeObserver({
 	]
 });
 
-SSO.onSizeChanged(function(){
-	console.log(typeof document.onReady);
-});
+SSO.getSize('size-sm').onSizeLeave = function(){
+	console.log("haha");
+};

@@ -89,7 +89,7 @@
             size         : _.sizes[_.currentSizeIndex],
             oldSize      : _.sizes[_.oldSizeIndex],
         };
-    };
+    }
 
     function getSizeIndexByWidth(width) {
         var _ = this,
@@ -104,14 +104,14 @@
                 return i;
             }
         }
-    };
+    }
 
     function init() {
         var _ = this;
         setSizeMaxWidth.call(_, _.sizes.length-1, _.maximumWidth);
         onDocumentReady.call(_);
         onWindowResize.call(_);
-    };    
+    } 
 
     function onDocumentReady() {
         var _ = this,
@@ -123,7 +123,7 @@
             data = getCallbackData.call(_);
             onInit.call(_, data);
         });
-    };
+    }
 
     function onSizeChanged(data) {
         var _ = this;
@@ -167,18 +167,32 @@
                 _.oldSizeIndex = _.currentSizeIndex;
             }
         });
-    };
+    }
 
     function setSizeMaxWidth(index, maxWidth) {
         var _ = this;
         _.sizes[index].maxWidth = maxWidth;
-    };
+    }
 
     function setSizeClassName(index, className) {
         var _ = this;
         _.sizes[index].className = className;
-    };
+    }
 
+
+    ScreenSizeObserver.prototype.getSize = function(size) {
+        var _ = this,
+            i;
+        if("number" == typeof size) {
+            return _.sizes[size];
+        } else if("string" == typeof size) {
+            for(i in _.sizes) {
+                if(size == _.sizes[i].className) {
+                    return _.sizes[i];
+                }
+            }
+        }
+    };
 
     ScreenSizeObserver.prototype.onSizeChanged = function(callback) {
         var _    = this;
@@ -10070,7 +10084,7 @@ var SSO = new ScreenSizeObserver({
 	]
 });
 
-SSO.onSizeChanged(function(){
-	console.log(typeof document.onReady);
-});
+SSO.getSize('size-sm').onSizeLeave = function(){
+	console.log("haha");
+};
 },{"../../fa-screensizeobserver.js":1,"jquery":2}]},{},[3]);
