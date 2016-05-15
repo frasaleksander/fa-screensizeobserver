@@ -1,10 +1,6 @@
-var $ = require("jquery");
-
 var $html = $(document.documentElement);
 var $body = $(document.body);
 var $test1 = $('#test1');
-
-var ScreenSizeObserver = require('../../fa-screensizeobserver.js');
 
 var SSO = new ScreenSizeObserver({
 	$element: $(document.body),

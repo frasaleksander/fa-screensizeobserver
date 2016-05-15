@@ -3,8 +3,10 @@
 
 (function(factory) {
     'use strict';
-    if (typeof exports == 'object') {
+    if ('object' == typeof exports) {
         module.exports = factory(require("jquery"));
+    } else if('function' == typeof window.jQuery && 'undefined' == typeof window.ScreenSizeObserver) {
+        window.ScreenSizeObserver = factory(window.jQuery);
     }
     
 })(function($) {
@@ -12,8 +14,6 @@
 
     var $document = $(document);
     var $window   = $(window);
-
-    var ScreenSizeObserver = window.ScreenSizeObserver || {};
 
     var ScreenSizeObserver = (function() {
 
@@ -65,6 +65,8 @@
         return ScreenSizeObserver;
 
     })();
+
+  
 
     function addCallbackToArray(arr, callback) {
         arr.push(callback);
@@ -164,7 +166,6 @@
         _.sizes[index].className = className;
     }
 
-
     ScreenSizeObserver.prototype.getSize = function(size) {
         var _ = this,
             i;
@@ -193,7 +194,7 @@
                 return i;
             }
         }
-    }
+    };
 
     ScreenSizeObserver.prototype.onSizeChanged = function(callback) {
         var _    = this;
@@ -10085,7 +10086,4 @@ var SSO = new ScreenSizeObserver({
 	]
 });
 
-SSO.getSize('size-sm').onSizeLeave = function(){
-	console.log("haha");
-};
 },{"../../fa-screensizeobserver.js":1,"jquery":2}]},{},[3]);
