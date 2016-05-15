@@ -30,10 +30,5 @@ var SSO1 = new ScreenSizeObserver(settings); //defaults
 
 Option | Type | Default | Description
 ------ | ---- | ------- | -----------
-sizes | array of objects | `[
-                    { maxWidth  : 767 , className : 'size-xs', },
-                    { maxWidth  : 991 , className : 'size-sm', },
-                    { maxWidth  : 1199, className : 'size-md', },
-                    {                   className : 'size-lg', },
-                ]` | Pauses autoplay on hover
+sizes | array of objects | `[{ maxWidth  : 767 , className : 'size-xs', },{ maxWidth  : 991 , className : 'size-sm', },{ maxWidth  : 1199, className : 'size-md', },{                   className : 'size-lg', },]` | Pauses autoplay on hover
 $element | jquery element | `$(document.documentElement)` | element 
