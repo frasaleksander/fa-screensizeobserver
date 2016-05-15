@@ -12,7 +12,9 @@ npm install fa-screensizeobserver --save
 
 ####browserify usage
 ```javascript
-var ScreenSizeObserver = require('fa-screensizeobserver');
+var ScreenSizeObserver = require('fa-screensizeobserver'); //returns class
+```
 
-var SSO1 = new ScreenSizeObserver(); //defaults
+```javascript
+var SSO1 = new ScreenSizeObserver(settings); //defaults
 ```
