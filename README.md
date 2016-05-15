@@ -117,6 +117,9 @@ var size0 = SSO.getSize(0); //gets size by index
 var sizesm = SSO.getSize('size-sm'); //gets size by class name
 var sizeIndex = SSO.getSizeIndexByWidth(780); //gets size index by width (in pixels)
 ```
+###Dependencies
+
+jQuery
 
 ###License
 
