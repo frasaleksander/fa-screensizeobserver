@@ -13,7 +13,7 @@ var settings = {
 		$test1.find('#title').html('Current class: ' + e.className);
 	},
 	onInit : function(){
-		$test1.find('#title').html('document is ready');
+		$test1.find('#box').html('Box initialized');
 	}, 
 	sizes: [
 		{ 
