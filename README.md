@@ -60,18 +60,27 @@ var settings = {
 		console.log('Current class: ' + e.className);
 	},
 	onInit : function(){
-		console.log('document is ready');
+		console.log('Initialized');
 	}, 
 };
 
 var SSO = new ScreenSizeObserver(settings);
+
+//you can also do this
+SSO.onSizeChanged(function(e){
+	console.log("Data: " + e);
+});
+
+SSO.onInit(function(e){
+	console.log("Inialized");
+});
 ```  
 
 ### Specific Size Related Events
 Event  | Params | Description
 -----  | ------ | -----------
-onSizeEnter | data   | fires when size is entered
-onSizeLeave | data | fires when size is left
+onSizeEnter | data   | Fires when specific size is entered.
+onSizeLeave | data | Fires when specific size is left.
 
 #### Example:
 ```javascript
