@@ -30,5 +30,5 @@ var SSO1 = new ScreenSizeObserver(settings); //defaults
 
 Option | Type | Default | Description
 ------ | ---- | ------- | -----------
-sizes | array of objects | `[{ maxWidth  : 767 , className : 'size-xs', },{ maxWidth  : 991 , className : 'size-sm', },{ maxWidth  : 1199, className : 'size-md', },{                   className : 'size-lg', },]` | Pauses autoplay on hover
-$element | jquery element | `$(document.documentElement)` | element 
+sizes | array of objects | `[{ maxWidth  : 767 , className : 'size-xs', },{ maxWidth  : 991 , className : 'size-sm', },{ maxWidth  : 1199, className : 'size-md', },{ className : 'size-lg', },]` | all sizes with their maxWidth, className properties and also onSizeEnter and onSizeLeave events
+$element | jquery element | `$(document.documentElement)` | jquery element that will get current className asigned
