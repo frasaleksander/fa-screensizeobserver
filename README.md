@@ -31,6 +31,8 @@ $element | jquery element | `$(document.documentElement)` | Current className is
 
 ####Example:
 ```javascript
+var ScreenSizeObserver = require('fa-screensizeobserver');
+
 var settings = {
 	$element: $(document.body),
 	sizes: [
