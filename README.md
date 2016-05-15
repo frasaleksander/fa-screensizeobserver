@@ -13,7 +13,8 @@ where `path/to/jquery` is location of your `jquery` script and `path/to/fa-scree
 
 
 ####NPM Install
-```
+
+```sh
 npm install fa-screensizeobserver --save
 ```
 
