@@ -26,7 +26,7 @@ var ScreenSizeObserver = require('fa-screensizeobserver'); //returns class
 
 Option | Type | Default | Description
 ------ | ---- | ------- | -----------
-sizes | array of objects | ```[{ maxWidth  : 767 , className : 'size-xs', },{ maxWidth  : 991 , className : 'size-sm', },{ maxWidth  : 1199, className : 'size-md', },{ className : 'size-lg' }]``` | All screen sizes. Each size must have maxWidth and className except last one. You can also create onSizeEnter and onSizeLeave events for each size.
+sizes | array of objects | ```[{ maxWidth  : 767 , className : 'size-xs', },{ maxWidth  : 991 , className : 'size-sm', },{ maxWidth  : 1199, className : 'size-md', },{ className : 'size-lg' }]``` | All screen sizes. Each size must have maxWidth and className except the last one which needs only className. You can also create onSizeEnter and onSizeLeave events for each size.
 $element | jquery element | `$(document.documentElement)` | Current className is going to be added to $element class attribute (on init and on sizechanged events).
 
 ####Example:
@@ -80,10 +80,10 @@ var settings = {
 			className:'size-sm', 
 			maxWidth:1000, 
 			onSizeEnter: function(e) {
-				$test1.find('#status').html("Entering: " + e.className);
+				console.log("Entering: " + e.className);
 			}, 
 			onSizeLeave: function(e) {
-				$test1.find('#status').html("Leaving: " + e.oldClassName);
+				console.log("Leaving: " + e.oldClassName);
 			}
 		}, { 
 			className:'size-lg'
