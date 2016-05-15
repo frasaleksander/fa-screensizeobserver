@@ -72,7 +72,7 @@ SSO.onSizeChanged(function(e){
 });
 
 SSO.onInit(function(e){
-	console.log("Inialized");
+	console.log("Initialized");
 });
 ```  
 
@@ -104,7 +104,7 @@ var settings = {
 var SSO = new ScreenSizeObserver(settings);
 ```
 
-### Public methods
+### Methods
 Method  | Args | Description
 -----  | ------ | -----------
 getSize | size: int or string  | gets size by size index (int) or class name (string) 
