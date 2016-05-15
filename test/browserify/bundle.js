@@ -10063,7 +10063,7 @@ var $test1 = $('#test1');
 
 var ScreenSizeObserver = require('../../fa-screensizeobserver.js');
 
-var SSO = new ScreenSizeObserver({
+var settings = {
 	$element: $(document.body),
 	onSizeChanged : function(e) {
 		$test1.find('#title').html('Current class: ' + e.className);
@@ -10085,5 +10085,7 @@ var SSO = new ScreenSizeObserver({
 			className:'size-lg'
 		},
 	]
-});
+};
+
+var SSO = new ScreenSizeObserver(settings);
 },{"../../fa-screensizeobserver.js":1,"jquery":2,"nojs2js":3}]},{},[4]);
