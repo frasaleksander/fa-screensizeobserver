@@ -51,4 +51,9 @@ var settings = {
 };
 
 var SSO = new ScreenSizeObserver(settings);
-```
+```  
+
+### Events
+
+Event  | Params | Description
+-----  | ------ | -----------
