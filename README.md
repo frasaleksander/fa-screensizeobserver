@@ -67,12 +67,13 @@ var settings = {
 var SSO = new ScreenSizeObserver(settings);
 ```  
 
-####Specific Size Related Events
+### Specific Size Related Events
 Event  | Params | Description
 -----  | ------ | -----------
 onSizeEnter | data   | fires when size is entered
 onSizeLeave | data | fires when size is left
 
+#### Example:
 ```javascript
 var settings = {
 	sizes: [
