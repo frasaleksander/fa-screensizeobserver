@@ -27,7 +27,9 @@
     "url": "https://github.com/frasaleksander/fa-screensizeobserver/issues"
   },
   "homepage": "https://github.com/frasaleksander/fa-screensizeobserver#readme",
-  "devDependencies": {},
+  "devDependencies": {
+    "nojs2js": "0.0.4"
+  },
   "dependencies": {
     "classlist-polyfill": "^1.0.3",
     "jquery": "^2.2.3"

@@ -1,6 +1,4 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-//require('classlist-polyfill');
-
 (function(factory) {
     'use strict';
     if ('object' == typeof exports) {
@@ -10054,6 +10052,10 @@ return jQuery;
 }));
 
 },{}],3:[function(require,module,exports){
+document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/,'js');
+
+},{}],4:[function(require,module,exports){
+require('nojs2js');
 var $ = require("jquery");
 
 var $html = $(document.documentElement);
@@ -10085,5 +10087,4 @@ var SSO = new ScreenSizeObserver({
 		},
 	]
 });
-
-},{"../../fa-screensizeobserver.js":1,"jquery":2}]},{},[3]);
+},{"../../fa-screensizeobserver.js":1,"jquery":2,"nojs2js":3}]},{},[4]);

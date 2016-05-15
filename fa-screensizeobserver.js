@@ -1,5 +1,3 @@
-//require('classlist-polyfill');
-
 (function(factory) {
     'use strict';
     if ('object' == typeof exports) {

@@ -1,3 +1,4 @@
+require('nojs2js');
 var $ = require("jquery");
 
 var $html = $(document.documentElement);
