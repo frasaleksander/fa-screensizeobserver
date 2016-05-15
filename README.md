@@ -77,10 +77,10 @@ SSO.onInit(function(e){
 ```  
 
 ### Specific Size Related Events
-Event  | Params | Returns | Description
+Event  | Params | Description
 -----  | ------ | -----------
-onSizeEnter | data   | object | Fires when specific size is entered.
-onSizeLeave | data | object | Fires when specific size is left.
+onSizeEnter | data   | Fires when specific size is entered.
+onSizeLeave | data | Fires when specific size is left.
 
 #### Example:
 ```javascript
@@ -105,10 +105,10 @@ var SSO = new ScreenSizeObserver(settings);
 ```
 
 ### Methods
-Method  | Args | Description
------  | ------ | -----------
-getSize | size: int or string  | gets size by size index (int) or class name (string) 
-getSizeIndexByWidth | width: int | get size index by width (in px)
+Method  | Args | Returns | Description
+------  | ---- | ------- | -----------
+getSize | size: int or string  | object | gets size by size index (int) or class name (string) 
+getSizeIndexByWidth | width: int | object | get size index by width (in px)
 
 
 #### Example:
