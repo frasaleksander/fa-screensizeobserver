@@ -1,8 +1,9 @@
 var $html = $(document.documentElement);
 var $body = $(document.body);
 var $test1 = $('#test1');
+var SSO1;
 
-var SSO = new ScreenSizeObserver({
+var settings = {
 	$element: $(document.body),
 	onSizeChanged : function(e) {
 		$test1.find('#title').html('Current class: ' + e.className);
@@ -19,9 +20,12 @@ var SSO = new ScreenSizeObserver({
 			}, 
 			onSizeLeave: function(e) {
 				$test1.find('#status').html("Leaving: " + e.oldClassName);
+
 			}
 		}, { 
 			className:'size-lg'
 		},
 	]
-});
+};
+
+SSO1 = new ScreenSizeObserver(settings);

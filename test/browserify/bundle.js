@@ -10056,6 +10056,7 @@ var $body = $(document.body);
 var $test1 = $('#test1');
 
 var ScreenSizeObserver = require('../../fa-screensizeobserver.js');
+var SSO1;
 
 var settings = {
 	$element: $(document.body),
@@ -10074,6 +10075,7 @@ var settings = {
 			}, 
 			onSizeLeave: function(e) {
 				$test1.find('#status').html("Leaving: " + e.oldClassName);
+
 			}
 		}, { 
 			className:'size-lg'
@@ -10081,5 +10083,5 @@ var settings = {
 	]
 };
 
-var SSO = new ScreenSizeObserver(settings);
+SSO1 = new ScreenSizeObserver(settings);
 },{"../../fa-screensizeobserver.js":1,"jquery":2,"nojs2js":3}]},{},[4]);
