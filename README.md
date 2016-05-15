@@ -104,10 +104,9 @@ getSizeIndexByWidth | width: int | get size index from width (px)
 
 #### Example:
 ```javascript
-var SSO = new ScreenSizeObserver();
 SSO.getSize(0); //gets size by index
-SSO.getSize('size-sm'); //gets size by className
-SSO.getSizeIndexByWidth(780); //
+SSO.getSize('size-sm'); //gets size by class name
+SSO.getSizeIndexByWidth(780); //gets size index by width (in pixels)
 ```
 
 ###License
