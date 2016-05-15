@@ -77,10 +77,10 @@ SSO.onInit(function(e){
 ```  
 
 ### Specific Size Related Events
-Event  | Params | Description
+Event  | Params | Returns | Description
 -----  | ------ | -----------
-onSizeEnter | data   | Fires when specific size is entered.
-onSizeLeave | data | Fires when specific size is left.
+onSizeEnter | data   | object | Fires when specific size is entered.
+onSizeLeave | data | object | Fires when specific size is left.
 
 #### Example:
 ```javascript
@@ -114,7 +114,7 @@ getSizeIndexByWidth | width: int | get size index by width (in px)
 #### Example:
 ```javascript
 var size0 = SSO.getSize(0); //gets size by index
-var sizesm = SSO.getSize('size-sm'); //gets size by class namegall
+var sizesm = SSO.getSize('size-sm'); //gets size by class name
 var sizeIndex = SSO.getSizeIndexByWidth(780); //gets size index by width (in pixels)
 ```
 
