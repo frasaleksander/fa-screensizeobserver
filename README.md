@@ -108,7 +108,7 @@ var SSO = new ScreenSizeObserver(settings);
 Method  | Args | Returns | Description
 ------  | ---- | ------- | -----------
 getSize | size: int or string  | object | Gets size by index (int) or class name (string) 
-getSizeIndexByWidth | width: int | object | Get size index by width (should be in px)
+getSizeIndexByWidth | width: int | int | Get size index by width (should be in px)
 
 
 #### Example:
