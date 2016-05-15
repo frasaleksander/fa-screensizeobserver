@@ -51,7 +51,7 @@ var SSO = new ScreenSizeObserver(settings);
 Event  | Params | Description
 -----  | ------ | -----------
 onInit | data   | fires after object is initialized
-onSizeChanged | data | fires after size is changed (not on window resize)
+onSizeChanged | data | fires after size is changed
 
 ####Example:
 ```javascript
@@ -66,3 +66,30 @@ var settings = {
 
 var SSO = new ScreenSizeObserver(settings);
 ```  
+
+####Specific Size Related Events
+Event  | Params | Description
+-----  | ------ | -----------
+onSizeEnter | data   | fires when size is entered
+onSizeLeave | data | fires when size is left
+
+```javascript
+var settings = {
+	sizes: [
+		{ 
+			className:'size-sm', 
+			maxWidth:1000, 
+			onSizeEnter: function(e) {
+				$test1.find('#status').html("Entering: " + e.className);
+			}, 
+			onSizeLeave: function(e) {
+				$test1.find('#status').html("Leaving: " + e.oldClassName);
+			}
+		}, { 
+			className:'size-lg'
+		},
+	]
+};
+
+var SSO = new ScreenSizeObserver(settings);
+```
