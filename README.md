@@ -50,8 +50,8 @@ var SSO = new ScreenSizeObserver(settings);
 
 Event  | Params | Description
 -----  | ------ | -----------
-onInit | data   | fires after object is initialized
-onSizeChanged | data | fires after size is changed
+onInit | data   | Fires after object is initialized
+onSizeChanged | data | Fires after size is changed
 
 ####Example:
 ```javascript
@@ -107,8 +107,8 @@ var SSO = new ScreenSizeObserver(settings);
 ### Methods
 Method  | Args | Returns | Description
 ------  | ---- | ------- | -----------
-getSize | size: int or string  | object | gets size by size index (int) or class name (string) 
-getSizeIndexByWidth | width: int | object | get size index by width (in px)
+getSize | size: int or string  | object | Gets size by index (int) or class name (string) 
+getSizeIndexByWidth | width: int | object | Get size index by width (should be in px)
 
 
 #### Example:
