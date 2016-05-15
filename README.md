@@ -22,10 +22,6 @@ npm install fa-screensizeobserver --save
 var ScreenSizeObserver = require('fa-screensizeobserver'); //returns class
 ```
 
-```javascript
-var SSO1 = new ScreenSizeObserver(settings); //defaults
-```
-
 ### Settings
 
 Option | Type | Default | Description
