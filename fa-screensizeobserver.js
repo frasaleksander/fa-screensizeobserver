@@ -91,22 +91,10 @@
 
     function init() {
         var _ = this;
-        setSizeMaxWidth.call(_, _.sizes.length-1, +Infinity);
-        onDocumentReady.call(_);
+        onInit.call(_);
         onWindowResize.call(_);
     } 
 
-    function onDocumentReady() {
-        var _ = this,
-            data;
-
-        $document.on('ready', function() {
-            _.oldSizeIndex = _.getSizeIndexByWidth($window.width());
-            _.currentSizeIndex = _.oldSizeIndex;
-            data = getCallbackData.call(_);
-            onInit.call(_, data);
-        });
-    }
 
     function onSizeChanged(data) {
         var _ = this;
@@ -134,8 +122,14 @@
         }
     }
 
-    function onInit(data){
-        var _ = this;
+    function onInit() {
+        var _ = this,
+            data;
+
+        setSizeMaxWidth.call(_, _.sizes.length-1, +Infinity);
+        _.oldSizeIndex = _.getSizeIndexByWidth($window.width());
+        _.currentSizeIndex = _.oldSizeIndex;
+        data = getCallbackData.call(_);
         execAllCallbacksFromArray(_.onInitArray, data);
     }
 
