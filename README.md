@@ -50,8 +50,8 @@ var SSO = new ScreenSizeObserver(settings);
 
 Event  | Params | Description
 -----  | ------ | -----------
-onInit | data   | Fires after object is initialized
-onSizeChanged | data | Fires after size is changed
+onInit | data   | Fires after object was initialized
+onSizeChanged | data | Fires after size was changed
 
 ####Example:
 ```javascript
