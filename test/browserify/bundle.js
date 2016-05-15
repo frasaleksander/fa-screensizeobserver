@@ -22,7 +22,6 @@
 
             var defaults = {
                 $element           : $(document.documentElement),
-                maximumWidth       : +Infinity,
                 sizes              : [
                     { maxWidth  : 767 , className : 'size-xs', },
                     { maxWidth  : 991 , className : 'size-sm', },
@@ -93,7 +92,7 @@
 
     function init() {
         var _ = this;
-        setSizeMaxWidth.call(_, _.sizes.length-1, _.maximumWidth);
+        setSizeMaxWidth.call(_, _.sizes.length-1, +Infinity);
         onDocumentReady.call(_);
         onWindowResize.call(_);
     } 
