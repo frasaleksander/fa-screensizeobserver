@@ -26,7 +26,7 @@ var ScreenSizeObserver = require('fa-screensizeobserver'); //returns class
 
 Option | Type | Default | Description
 ------ | ---- | ------- | -----------
-sizes | array of objects | ```[{ maxWidth  : 767 , className : 'size-xs' }, { maxWidth  : 991 , className : 'size-sm' }, { maxWidth  : 1199, className : 'size-md' }, { className : 'size-lg' }]``` | All screen sizes. Each size must have maxWidth and className. Last size needs only className. You can also create onSizeEnter and onSizeLeave events for each size.
+sizes | array of objects | ```[{ maxWidth  : 767 , className : 'size-xs' }, { maxWidth  : 991 , className : 'size-sm' }, { maxWidth  : 1199, className : 'size-md' }, { className : 'size-lg' }]``` | Define screen sizes. Each size must have maxWidth and className. Last size only requires className. You can also define onSizeEnter and onSizeLeave events for each size.
 $element | jquery element | `$(document.documentElement)` | Current className is going to be added to $element class attribute (on init and on sizechanged events).
 
 ####Example:
