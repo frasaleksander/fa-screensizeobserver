@@ -17,7 +17,7 @@ where `path/to/jquery` is location of your `jquery` script and `path/to/fa-scree
 npm install fa-screensizeobserver --save
 ```
 
-####Browserify 
+####Browserify
 ```javascript
 var ScreenSizeObserver = require('fa-screensizeobserver'); //returns class
 ```
@@ -31,8 +31,6 @@ $element | jquery element | `$(document.documentElement)` | Current className is
 
 ####Example:
 ```javascript
-var ScreenSizeObserver = require('fa-screensizeobserver');
-
 var settings = {
 	$element: $(document.body),
 	sizes: [
