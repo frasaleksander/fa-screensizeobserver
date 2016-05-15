@@ -94,3 +94,23 @@ var settings = {
 
 var SSO = new ScreenSizeObserver(settings);
 ```
+
+### Public methods
+Method  | Args | Description
+-----  | ------ | -----------
+getSize | size: int or string  | gets size from size index (int) or class name (string) 
+getSizeIndexByWidth | width: int | get size index from width (px)
+
+
+#### Example:
+```javascript
+var SSO = new ScreenSizeObserver();
+SSO.getSize(0); //gets size by index
+SSO.getSize('size-sm'); //gets size by className
+SSO.getSizeIndexByWidth(780); //
+```
+
+###License
+
+Copyright (c) 2016 Aleksander Fras  
+Licensed under the MIT license.
