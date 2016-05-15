@@ -30,16 +30,10 @@ sizes | array of objects | ```[{ maxWidth  : 767 , className : 'size-xs', },{ ma
 $element | jquery element | `$(document.documentElement)` | Current className is going to be appended to $element class attribute (on init and on sizechanged events).
 ------ | ---- | ------- | -----------
 
-####example
+####Example:
 ```javascript
 var settings = {
 	$element: $(document.body),
-	onSizeChanged : function(e) {
-		console.log('Current class: ' + e.className);
-	},
-	onInit : function(){
-		console.log('document is ready');
-	}, 
 	sizes: [
 		{ 
 			className:'size-sm', 
