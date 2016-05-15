@@ -3,7 +3,7 @@ Observes screen size
 
 ###Usage
 
-####Normal way
+####"Normal" way
 Script needs jquery to work (for now). Before your closing ```<body>``` tag add:
 ```html
 <script src="path/to/jquery/jquery.js"></script>
