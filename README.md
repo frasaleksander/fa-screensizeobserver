@@ -28,7 +28,6 @@ Option | Type | Default | Description
 ------ | ---- | ------- | -----------
 sizes | array of objects | ```[{ maxWidth  : 767 , className : 'size-xs', },{ maxWidth  : 991 , className : 'size-sm', },{ maxWidth  : 1199, className : 'size-md', },{ className : 'size-lg' }]``` | All screen sizes. Each size must have maxWidth and className except last one. You can also create onSizeEnter and onSizeLeave events for each size.
 $element | jquery element | `$(document.documentElement)` | Current className is going to be appended to $element class attribute (on init and on sizechanged events).
------- | ---- | ------- | -----------
 
 ####Example:
 ```javascript
@@ -38,14 +37,8 @@ var settings = {
 		{ 
 			className:'size-sm', 
 			maxWidth:1000, 
-			onSizeEnter: function(e) {
-				console.log("Entering: " + e.className);
-			}, 
-			onSizeLeave: function(e) {
-				console.log("Leaving: " + e.oldClassName);
-			}
 		}, { 
-			className:'size-lg'
+			className:'size-lg', 
 		},
 	]
 };
@@ -57,3 +50,19 @@ var SSO = new ScreenSizeObserver(settings);
 
 Event  | Params | Description
 -----  | ------ | -----------
+onInit | data   | fires when object is being initialized
+onSizeChanged | data | fires after size has been changed
+
+####Example:
+```javascript
+var settings = {
+	onSizeChanged : function(e) {
+		console.log('Current class: ' + e.className);
+	},
+	onInit : function(){
+		console.log('document is ready');
+	}, 
+};
+
+var SSO = new ScreenSizeObserver(settings);
+```  
